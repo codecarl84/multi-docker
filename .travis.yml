@@ -19,7 +19,6 @@ after_sucess:
 
   # Take images and push to docker hub
   - docker push codecarl84/ multi-client 
-  - docker push codecarl94/ multi-nginx  
+  - docker push codecarl84/ multi-nginx  
   - docker push codecarl84/ multi-server 
   - docker push codecarl84/ multi-worker
-  
