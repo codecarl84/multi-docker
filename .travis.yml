@@ -1,0 +1,25 @@
+sudo: required 
+services:
+  - docker
+
+before_install:  
+  - docker build -t codecarl84/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run codecarl84/react-test npm test -- --coverage
+
+after_sucess: 
+  - docker build -t codecarl84/ multi-client ./client
+  - docker build -t codecarl94/ multi-nginx  ./nginx
+  - docker build -t codecarl84/ multi-server ./server
+  - docker build -t codecarl84/ multi-worker ./worker
+  
+  #Log into the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Take images and push to docker hub
+  - docker push codecarl84/ multi-client 
+  - docker push codecarl94/ multi-nginx  
+  - docker push codecarl84/ multi-server 
+  - docker push codecarl84/ multi-worker
+  
