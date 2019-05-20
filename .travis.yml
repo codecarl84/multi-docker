@@ -10,7 +10,7 @@ script:
 
 after_sucess: 
   - docker build -t codecarl84/multi-client ./client
-  - docker build -t codecarl84/multi-nginx  ./nginx
+  - docker build -t codecarl84/multi-nginx ./nginx
   - docker build -t codecarl84/multi-server ./server
   - docker build -t codecarl84/multi-worker ./worker
   
